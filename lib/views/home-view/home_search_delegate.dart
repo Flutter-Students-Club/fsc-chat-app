@@ -28,7 +28,7 @@ class HomeSearchDelegate extends SearchDelegate {
       child: ListView.separated(
           separatorBuilder: (_, __) => SizedBox(height: 15),
           itemCount: 25,
-          itemBuilder: (_, index) => MessageBubbleWidget(index: index)),
+          itemBuilder: (_, index) =>Text('aaa')),
     );
   }
 
