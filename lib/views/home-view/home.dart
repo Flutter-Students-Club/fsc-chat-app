@@ -3,6 +3,7 @@ import 'package:bco_chat/views/base_view.dart';
 import 'package:bco_chat/views/home-view/home_search_delegate.dart';
 import 'package:bco_chat/views/home-view/home_state.dart';
 import 'package:bco_chat/widgets/message_bubble_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -38,15 +39,23 @@ class _HomeState extends HomeState {
       title: Image.asset('assets/images/logo.png'));
 
   Widget get _messages => Expanded(
-      child: ListView.separated(
-          separatorBuilder: (_, __) => SizedBox(height: 15),
-          itemCount: 25,
-          itemBuilder: (_, index) => MessageBubbleWidget(index: index)));
+      child: StreamBuilder<QuerySnapshot>(
+          stream: chatService.chatStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.separated(
+                  separatorBuilder: (_, __) => SizedBox(height: 15),
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (_, index) =>
+                      MessageBubbleWidget(chatData: snapshot.data.docs[index]));
+            } else {
+              return SizedBox.shrink();
+            }
+          }));
 
   Widget get _sendMessage => TextField(
         controller: message,
         onChanged: (String text) {
-          print(text);
           if (text.length > 0) {
             setState(() => showIcons = false);
           } else {
@@ -60,7 +69,7 @@ class _HomeState extends HomeState {
                 showIcons
                     ? IconButton(
                         icon: Icon(Icons.image),
-                        onPressed: () {},
+                        onPressed: sendImage,
                       )
                     : SizedBox.shrink(),
                 showIcons

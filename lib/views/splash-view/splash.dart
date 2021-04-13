@@ -1,5 +1,7 @@
+import 'package:bco_chat/core/storage.dart';
 import 'package:bco_chat/routes/routes.dart';
 import 'package:bco_chat/views/base_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -13,9 +15,16 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
+    Future.microtask(() async {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInAnonymously();
+      print(userCredential);
       Future.delayed(Duration(seconds: 1)).then((value) {
-        Navigator.of(context).pushReplacementNamed(Routes.signInRoute);
+        if (Storage.getString('username') != null) {
+          Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+        } else {
+          Navigator.of(context).pushReplacementNamed(Routes.signInRoute);
+        }
       });
     });
   }

@@ -1,15 +1,26 @@
-import 'package:bco_chat/styles/custom_theme.dart';
+import 'package:bco_chat/core/storage.dart';
+import 'package:bco_chat/routes/routes.dart';
+import 'package:bco_chat/services/user_service.dart';
 import 'package:bco_chat/views/base_view.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatelessWidget {
   final TextEditingController name = TextEditingController();
+  final UserService userService = UserService.instance;
 
-  signIn() {
+  signIn(context) async {
     if (name.text.trim().length > 0) {
-      print('OK!');
-    } else {
-      print('NO!');
+      final response = await userService.createUser(name.text);
+      if (response == false) {
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  title: Text('Hata 😥'),
+                  content: Text('Bu isimde kayıt yapılmış.'),
+                ));
+      } else {
+        Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
+      }
     }
   }
 
@@ -27,7 +38,7 @@ class SignIn extends StatelessWidget {
               SizedBox(height: 20),
               _greetingText2(context),
               SizedBox(height: 20),
-              _textField
+              _textField(context)
             ],
           ),
         ),
@@ -45,13 +56,13 @@ class SignIn extends StatelessWidget {
             Theme.of(context).textTheme.headline4.copyWith(color: Colors.white),
       );
 
-  Widget get _textField => TextField(
+  Widget _textField(context) => TextField(
         controller: name,
         decoration: InputDecoration(
             suffixIcon: IconButton(
               color: Colors.white,
               icon: Icon(Icons.keyboard_arrow_right_outlined),
-              onPressed: signIn,
+              onPressed: () => signIn(context),
             ),
             filled: true),
       );

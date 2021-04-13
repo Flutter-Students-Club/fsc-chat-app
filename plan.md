@@ -7,15 +7,16 @@ ui [ x ]
 
 ---
 
-shared preferences setup [ ]
-sign up [ ]
-unique user control [ ]
-send message [ ]
-list message [ ]
-send image [ ]
+shared preferences setup [ x ]
+sign up [ x ]
+unique user control [ x ]
+send message [ x ]
+list message [ x ]
+send image [ x ]
 
 ---
 
+image preview [ ]
 send location [ ]
 search message [ ]
 delete message [ ]
