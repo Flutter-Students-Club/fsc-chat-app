@@ -9,8 +9,7 @@ class UserService {
   static final UserService _instance = UserService._privateConstructor();
 
   static UserService get instance => _instance;
-  CollectionReference users =
-      FirebaseFirestore.instance.collection(COLLECTION_NAME);
+  var users = FirebaseFirestore.instance.collection(COLLECTION_NAME);
 
   createUser(String username) async {
     Storage.saveString('username', username);

@@ -1,6 +1,5 @@
 import 'package:bco_chat/services/chat_service.dart';
-import 'package:bco_chat/widgets/message_bubble_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:bco_chat/widgets/list_message_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeSearchDelegate extends SearchDelegate {
@@ -29,23 +28,11 @@ class HomeSearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     print(query);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: StreamBuilder<QuerySnapshot>(
-          stream: chatService.chatStream
-              .where('content.text', isGreaterThanOrEqualTo: query)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return ListView.separated(
-                  separatorBuilder: (_, __) => SizedBox(height: 15),
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (_, index) =>
-                      MessageBubbleWidget(chatData: snapshot.data.docs[index]));
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          }),
-    );
+        padding: const EdgeInsets.all(8.0),
+        child: ListMessageWidget(
+            streamData: chatService.chatStream
+                .where('content.text', isGreaterThanOrEqualTo: query)
+                .snapshots()));
   }
 
   @override

@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 const String COLLECTION_NAME = 'chat';
+const String PINNED_COLLECTION_NAME = 'pinned-message';
+const String PINNED_MESSAGE_ID = 'xMNsFIRzQFe4boiqQTtp';
 
 class ChatService {
   ChatService._privateConstructor();
@@ -14,8 +16,11 @@ class ChatService {
 
   static ChatService get instance => _instance;
 
-  CollectionReference chat =
-      FirebaseFirestore.instance.collection(COLLECTION_NAME);
+  var chat = FirebaseFirestore.instance.collection(COLLECTION_NAME);
+
+  var pinnedMessage =
+      FirebaseFirestore.instance.collection(PINNED_COLLECTION_NAME);
+
   var chatStream = FirebaseFirestore.instance.collection(COLLECTION_NAME);
 
   sendMessage(Map<String, dynamic> content, String type) {
@@ -25,6 +30,10 @@ class ChatService {
       "content": content,
       "type": type
     });
+  }
+
+  updatePinnedMessage(String message) async {
+    await pinnedMessage.doc(PINNED_MESSAGE_ID).update({"message": message});
   }
 
   sendImage(File image) async {

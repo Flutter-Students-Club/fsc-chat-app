@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:bco_chat/views/preview-view/image_preview.dart';
-import 'package:bco_chat/views/preview-view/map_preview.dart';
 import 'package:bco_chat/widgets/map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -28,7 +29,8 @@ Widget getMessage(
       return Container(
           height: MediaQuery.of(context).size.height * 0.3,
           child: MapWidget(
-              coordinates: LatLng(content['latitude'], content['longitude'])));
+              coordinates: LatLng(content['latitude'], content['longitude']),
+              clickable: true));
     default:
       return SizedBox.shrink();
   }
@@ -58,4 +60,17 @@ getUserLocation() async {
 
   _locationData = await location.getLocation();
   return _locationData;
+}
+
+Color getRandomColor() {
+  Random random = Random();
+  List<Color> colors = [
+    Colors.red[900],
+    Colors.purple[900],
+    Colors.pink[900],
+    Colors.orange[900],
+    Colors.deepOrange[900],
+    Colors.blue[900]
+  ];
+  return colors[random.nextInt(6)];
 }

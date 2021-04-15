@@ -13,6 +13,7 @@ abstract class HomeState extends State<Home> {
   final ChatService chatService = ChatService.instance;
   final picker = ImagePicker();
   bool showScroll = false;
+  bool showPinnedMessage = true;
   bool showIcons = true;
 
   sendMessage() {
