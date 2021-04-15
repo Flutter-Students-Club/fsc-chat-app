@@ -1,7 +1,10 @@
-import 'package:bco_chat/widgets/message_bubble_widget.dart';
+import 'package:bco_chat/services/chat_service.dart';
+import 'package:bco_chat/widgets/list_message_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeSearchDelegate extends SearchDelegate {
+  ChatService chatService = ChatService.instance;
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -23,13 +26,13 @@ class HomeSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    print(query);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.separated(
-          separatorBuilder: (_, __) => SizedBox(height: 15),
-          itemCount: 25,
-          itemBuilder: (_, index) =>Text('aaa')),
-    );
+        padding: const EdgeInsets.all(8.0),
+        child: ListMessageWidget(
+            streamData: chatService.chatStream
+                .where('content.text', isGreaterThanOrEqualTo: query)
+                .snapshots()));
   }
 
   @override

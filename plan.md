@@ -16,15 +16,15 @@ send image [ x ]
 
 ---
 
-image preview [ ]
-send location [ ]
-search message [ ]
-delete message [ ]
-new message scroll [ ]
-scroll to bottom [ ]
+image preview [ x ]
+send location [ x ]
+search message [ x ]
+delete message [ x ]
+scroll to bottom [ x ]
 
 ---
 
-list users [ ]
-pinned message [ ]
-show custom user messages [ ]
+fix on google map click [ x ]
+list users [ x ]
+pinned message [ x ]
+show custom user messages [ x ]
