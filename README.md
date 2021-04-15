@@ -6,8 +6,8 @@
 
 - Güncel Google ürün ve hizmetlerini kullanarak Flutter arayüzü/dart altyapısını derinlemesine anlayarak Firebase ile bütünleştirmek. Web ve Android Platformlarında kullanmak. Eğitim serisinin amacı kendi uygulamanızı artık yapmanız, uygulamarınızı geliştirmeniz ve Google teknolojilerini anlamanız eğitim sonundaki 5 gün içerisindeki gireceğiniz quizlerle sertifika alacaksınız.
 
-!(image1)[https://i.hizliresim.com/QRDz11.png]
-!(image2)[https://i.hizliresim.com/dfeebC.png]
+!(image1)[https://i.imgur.com/q0BM8NG.png]
+!(image2)[https://i.imgur.com/GjOqwNc.png]
 !(image3)[https://i.hizliresim.com/2VdRm2.png]
 
 - firebase setup [ x ]
