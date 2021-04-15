@@ -36,6 +36,6 @@
 ---
 
 ![image1](https://i.imgur.com/q0BM8NG.png)
-![image2][https://i.imgur.com/GjOqwNc.png]
-![image3][https://i.imgur.com/Y0mow7T.png]
+!(image2)[https://i.imgur.com/GjOqwNc.png]
+!(image3)[https://i.imgur.com/Y0mow7T.png]
 
