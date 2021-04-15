@@ -7,23 +7,23 @@
 
 ---
 
-- shared preferences setup [ ]
-- sign up [ ]
-- unique user control [ ]
-- send message [ ]
-- list message [ ]
-- send image [ ]
+- shared preferences setup [ x ]
+- sign up [ x ]
+- unique user control [ x ]
+- send message [ x ]
+- list message [ x ]
+- send image [ x ]
 
 ---
 
-- send location [ ]
-- search message [ ]
-- delete message [ ]
-- new message scroll [ ]
-- scroll to bottom [ ]
+- send location [ x ]
+- search message [ x ]
+- delete message [ x ]
+- new message scroll [ x ]
+- scroll to bottom [ x ]
 
 ---
 
-- list users [ ]
-- pinned message [ ]
-- show custom user messages [ ]
+- list users [ x ]
+- pinned message [ x ]
+- show custom user messages [ x ]
