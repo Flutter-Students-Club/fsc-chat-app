@@ -16,10 +16,7 @@ class ChatService {
 
   CollectionReference chat =
       FirebaseFirestore.instance.collection(COLLECTION_NAME);
-  Stream chatStream = FirebaseFirestore.instance
-      .collection(COLLECTION_NAME)
-      .orderBy('time', descending: false)
-      .snapshots();
+  var chatStream = FirebaseFirestore.instance.collection(COLLECTION_NAME);
 
   sendMessage(Map<String, dynamic> content, String type) {
     chat.add({
@@ -41,5 +38,9 @@ class ChatService {
         .ref('images/$fileName')
         .getDownloadURL();
     this.sendMessage({"imageUrl": downloadURL}, "image");
+  }
+
+  deleteMessage(String id) {
+    chat.doc(id).delete();
   }
 }

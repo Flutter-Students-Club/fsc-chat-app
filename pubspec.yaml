@@ -31,8 +31,10 @@ dependencies:
   cloud_firestore: ^1.0.4
   firebase_storage: ^8.0.3
   firebase_auth: ^1.0.3
-  shared_preferences: any
-  image_picker: any
+  image_picker: ^0.7.4
+  shared_preferences: ^2.0.5
+  location: ^4.1.1
+  google_maps_flutter: ^2.0.3
 
 dev_dependencies:
   flutter_test:

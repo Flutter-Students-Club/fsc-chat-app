@@ -4,10 +4,9 @@ import 'package:bco_chat/styles/custom_theme.dart';
 import 'package:bco_chat/views/home-view/home.dart';
 import 'package:bco_chat/views/sign-in-view/sign_in.dart';
 import 'package:bco_chat/views/splash-view/splash.dart';
+import 'package:bco_chat/views/user-view/users.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import 'views/user-view/users.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

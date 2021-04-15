@@ -17,6 +17,13 @@ class _HomeState extends HomeState {
   @override
   Widget build(BuildContext context) {
     return BaseView(
+        floatingActionButton: showScroll
+            ? FloatingActionButton(
+                mini: true,
+                backgroundColor: Theme.of(context).primaryColor,
+                child: Icon(Icons.arrow_downward),
+                onPressed: scrollToBottom)
+            : null,
         appBar: _appBar,
         child: Column(
           children: [_messages, _sendMessage],
@@ -40,10 +47,13 @@ class _HomeState extends HomeState {
 
   Widget get _messages => Expanded(
       child: StreamBuilder<QuerySnapshot>(
-          stream: chatService.chatStream,
+          stream: chatService.chatStream
+              .orderBy('time', descending: false)
+              .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
+                  controller: scrollController,
                   separatorBuilder: (_, __) => SizedBox(height: 15),
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (_, index) =>
@@ -75,7 +85,7 @@ class _HomeState extends HomeState {
                 showIcons
                     ? IconButton(
                         icon: Icon(Icons.location_on),
-                        onPressed: () {},
+                        onPressed: sendLocation,
                       )
                     : SizedBox.shrink(),
                 IconButton(
